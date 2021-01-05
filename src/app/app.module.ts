@@ -16,6 +16,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { RoleGuard } from './role.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

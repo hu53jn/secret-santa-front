@@ -58,7 +58,6 @@ export class EmployeeListComponent implements OnInit {
     document.getElementById("closeModalButton").click();
     this.secretSantaMain.forEach(element => {
       this.employeeService.addEmploye(element).subscribe((data : any) => {
-        console.log(data)
       },
       err => alertify.error("Email already exist!" + element.email));
       this.router.navigateByUrl('/home');

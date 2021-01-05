@@ -48,9 +48,16 @@ export class HomeComponent implements OnInit {
   }
 
   removeEmployee(index: number){
-    this.employeeService.deleteEmployee(this.employess[index].id).subscribe((data : any) => {
-      this.getEmployees();
-    });
+    this.employess.forEach(element => {
+      if(element.secretSanta == this.employess[index].email){
+        element.secretSanta = "Secret Santa not selected!";
+        this.employeeService.updateEmployee(element.id, element).subscribe((data : any) => {
+          this.employeeService.deleteEmployee(this.employess[index].id).subscribe((data : any) => {
+            this.getEmployees();
+          });
+        });
+      }
+    })
   }
 
   shuffleArray(){

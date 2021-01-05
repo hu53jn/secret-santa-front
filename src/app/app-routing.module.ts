@@ -5,11 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
+import { RoleGuard } from './role.guard';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
-  {path:'add-employee', component: EmployeeListComponent, canActivate: [AuthGuard]},
+  {path:'add-employee', component: EmployeeListComponent, canActivate: [RoleGuard]},
   {path:'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path:'**', component: HomeComponent}
 ];

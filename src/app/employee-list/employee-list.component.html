@@ -1,0 +1,83 @@
+<div class="row pt-5">
+  <div class="col-6 m-auto">
+    <div class="card">
+      <div class="card-header">
+        Add employee!
+      </div>
+      <div class="card-body">
+        <form [formGroup]="employeeForm" (submit)="addEmployee()">
+
+          <div class="form-group col-12">
+            <label class="form-label">First name</label>
+            <input type="text" class="form-control" formControlName="firstName">
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label">Last name</label>
+            <input type="text" class="form-control" formControlName="lastName">
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="email" [tagValidator]="employees">
+            <span class="error-block" *ngIf="!employeeForm.get('email').valid && employeeForm.get('email').touched">
+              <span *ngIf="employeeForm.get('email').errors.required" class="error-block">Please provide email!</span>
+            </span>
+          </div>
+
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!employeeForm.valid">Add employee!</button>
+            <!-- <button class="btn btn-secondary btn-lg ml-1" type="button" (click)="shuffleArray()">Select secret santa!</button> -->
+            <!-- <button class="btn btn-secondary btn-lg ml-1" type="button" (click)="shuffleArray()">Select secret santa!</button> -->
+            <button class="btn btn-success btn-lg"
+                    style="float: right;" type="button"
+                    data-toggle="modal"
+                    data-target="#exampleModal">Show pairs!</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row pt-3 mr-2 ml-2">
+  <div *ngFor="let employee of secretSantaMain; let i = index" class="shadow col-sm-3 p-3">
+    <app-employee [_employee]="employee" [employeeId]="i" (removeEmployee)="removeEmployee(i)"></app-employee>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" data-target="#myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Employees</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6" style="text-align: center;" *ngFor="let employee of secretSantaMain">
+            <a>Employee email: {{employee.email}} </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="alertEmployees()">Alert employees with email</button>
+        <button id="closeModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

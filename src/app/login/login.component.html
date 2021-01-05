@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-4 m-auto pt-5">
+    <div class="card m-auto">
+      <div class="card-header">
+        Login
+      </div>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (submit)="onSubmit()">
+          <div class="form-group col-12">
+            <label>Email</label>
+            <input type="text" class="form-control" formControlName="email" required>
+            <span class="error-block" *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
+              <span *ngIf="loginForm.get('email').errors.required" class="error-block">Please enter valid email !</span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password" required>
+            <span class="error-block" *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+              <span *ngIf="loginForm.get('password').errors.required" class="error-block">Please enter valid password !</span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+          </div>
+          <div class="form-group col-12">
+            <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

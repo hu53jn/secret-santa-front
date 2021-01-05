@@ -1,0 +1,9 @@
+<div class="card text-center">
+  <div class="card-header">
+    Name of employee
+  </div>
+  <div class="card-body">
+    <h4 *ngIf="_employee != undefined">{{_employee.email}}</h4>
+    <button class="btn btn-danger animate" (click)="remove()">Remove</button>
+  </div>
+</div>

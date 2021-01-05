@@ -1,0 +1,11 @@
+.animate{
+  transition: all 0.3s ease-in-out;
+}
+
+
+.btn:hover{
+  transform: scale(1.2, 1.2);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+  opacity: .5;
+}

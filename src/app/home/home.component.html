@@ -1,0 +1,42 @@
+<div class="row pt-5" *ngIf="ifAdmin() && employess != undefined">
+  <div class="col-10 m-auto" style="text-align: center;">
+    <h2 class="pb-5">Employees with their pairs !</h2>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Secret Santa</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor = "let employee of employess; let i = index">
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.secretSanta}}</td>
+        <td><button class="btn btn-danger" (click)="removeEmployee(i)" [disabled]="employee.email == 'admin@admin.com'">X</button></td>
+      </tbody>
+    </table>
+    <div>
+      <button class="btn btn-secondary btn-lg mt-5" (click)="shuffleArray()">Shuffle array!</button>
+    </div>
+    <div>
+      <button class="btn btn-secondary btn-lg mt-5" (click)="updateList()">Update list!</button>
+    </div>
+  </div>
+</div>
+
+<div class="row pt-5" *ngIf="!ifAdmin() && secretSantaInfo != undefined && userInfo != undefined">
+  <div class="col-5 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        Hello {{userInfo.firstName}} !
+      </div>
+      <div class="card-body">
+        <p>Your secret santa for this year is {{secretSantaInfo.secretSanta}} !</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row pt-5">
+  <div class="col-4 m-auto">
+  <div class="card m-auto">
+    <div class="card-header">
+      Register
+    </div>
+    <div class="card-body">
+      <form [formGroup]="registerForm" (submit)="onSubmit()">
+        <div class="form-group col-12">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            <span class="error-block" *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">
+              <span *ngIf="registerForm.get('email').errors.required" class="error-block">Please enter valid email !</span>
+            </span>
+        </div>
+
+        <div class="form-group col-12">
+          <label class="form-label">First name</label>
+          <input type="text" class="form-control" formControlName="firstName">
+        </div>
+
+        <div class="form-group col-12">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName">
+        </div>
+
+        <div class="form-group col-12">
+          <label for="passwrod" class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+          <span class="error-block" *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">
+            <span *ngIf="registerForm.get('password').errors.required" class="error-block">Please enter valid password !</span>
+          </span>
+        </div>
+
+        <div class="form-group col-12">
+          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Save</button>
+        </div>
+        <div class="form-group col-12">
+          <button type="reset" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>

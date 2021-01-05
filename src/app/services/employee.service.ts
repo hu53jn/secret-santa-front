@@ -15,7 +15,7 @@ export class EmployeeService {
   }
 
   getEmployee(){
-    return this.httpClient.get(this.APIUrl + '/getSecretSanta/'+localStorage.getItem('userEmail'));
+    return this.httpClient.get(this.APIUrl + '/getSecretSanta/'+localStorage.getItem('username'));
   }
 
   getEmployees(){

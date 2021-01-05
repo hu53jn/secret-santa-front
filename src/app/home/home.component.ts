@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   removeEmployee(index: number){
     this.employess.forEach(element => {
-      if(element.secretSanta == this.employess[index].email){
+      if(element.secretSanta == this.employess[index].username){
         element.secretSanta = "Secret Santa not selected!";
         this.employeeService.updateEmployee(element.id, element).subscribe((data : any) => {
           this.employeeService.deleteEmployee(this.employess[index].id).subscribe((data : any) => {
@@ -78,9 +78,9 @@ export class HomeComponent implements OnInit {
     var helper = this.employess.length;
     for(let i = 0; i < this.employess.length; i++){
       if(i == helper - 1){
-        this.employess[i].secretSanta = this.employess[0].email;
+        this.employess[i].secretSanta = this.employess[0].firstName;
       }else{
-        this.employess[i].secretSanta = this.employess[i+1].email;
+        this.employess[i].secretSanta = this.employess[i+1].firstName;
       }
     }
     //this.updateList();

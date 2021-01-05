@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EmailValidator } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +13,12 @@ export class UserService {
     return this.httpClient.post(this.APIUrl + '/register', user);
   }
 
-  validateUser(email: string, password: string){
-    var user = {'email': email, 'password': password};
+  validateUser(username: string, password: string){
+    var user = {'username': username, 'password': password};
     return this.httpClient.post(this.APIUrl + '/login', user);
   }
 
   getUserInfo(){
-    return this.httpClient.get(this.APIUrl + '/getUserInfo/'+ localStorage.getItem('userEmail'));
+    return this.httpClient.get(this.APIUrl + '/getUserInfo/'+ localStorage.getItem('username'));
   }
 }

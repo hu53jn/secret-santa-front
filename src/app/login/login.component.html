@@ -7,10 +7,10 @@
       <div class="card-body">
         <form [formGroup]="loginForm" (submit)="onSubmit()">
           <div class="form-group col-12">
-            <label>Email</label>
-            <input type="text" class="form-control" formControlName="email" required>
-            <span class="error-block" *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
-              <span *ngIf="loginForm.get('email').errors.required" class="error-block">Please enter valid email !</span>
+            <label>Username</label>
+            <input type="text" class="form-control" formControlName="username" required>
+            <span class="error-block" *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">
+              <span *ngIf="loginForm.get('username').errors.required" class="error-block">Please enter valid username !</span>
             </span>
           </div>
           <div class="form-group col-12">
@@ -24,7 +24,7 @@
             <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
           </div>
           <div class="form-group col-12">
-            <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
           </div>
         </form>
       </div>

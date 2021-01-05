@@ -20,15 +20,15 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(){
     this.loginForm = this.formBuilder.group({
-      email: [null, [Validators.required,Validators.email]],
+      username: [null, Validators.required],
       password: [null, Validators.required]
     })
   }
 
   onSubmit(){
-    this.userService.validateUser(this.loginForm.get('email').value, this.loginForm.get('password').value).subscribe( (result : any) => {
+    this.userService.validateUser(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe( (result : any) => {
       localStorage.setItem('token', result.token);
-      localStorage.setItem('userEmail', result.email);
+      localStorage.setItem('username', result.username);
       if(result.role == 'admin'){
         localStorage.setItem('admin','true');
       }
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/home');
     },
     err => {
-      alertify.error('Email or password are wrong!');
+      alertify.error('Username or password are wrong!');
     })
   }
 

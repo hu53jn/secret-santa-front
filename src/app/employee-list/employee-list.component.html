@@ -10,6 +10,9 @@
           <div class="form-group col-12">
             <label class="form-label">First name</label>
             <input type="text" class="form-control" formControlName="firstName">
+            <span class="error-block" *ngIf="!employeeForm.get('firstName').valid && employeeForm.get('firstName').touched">
+              <span *ngIf="employeeForm.get('firstName').errors.required" class="error-block">Please provide first name!</span>
+            </span>
           </div>
 
           <div class="form-group col-12">
@@ -18,10 +21,10 @@
           </div>
 
           <div class="form-group col-12">
-            <label class="form-label">Email</label>
-            <input type="text" class="form-control" formControlName="email" [tagValidator]="employees">
-            <span class="error-block" *ngIf="!employeeForm.get('email').valid && employeeForm.get('email').touched">
-              <span *ngIf="employeeForm.get('email').errors.required" class="error-block">Please provide email!</span>
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" formControlName="username" [tagValidator]="employees">
+            <span class="error-block" *ngIf="!employeeForm.get('username').valid && employeeForm.get('username').touched">
+              <span *ngIf="employeeForm.get('username').errors.required" class="error-block">Please provide username!</span>
             </span>
           </div>
 
@@ -64,13 +67,13 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-6" style="text-align: center;" *ngFor="let employee of secretSantaMain">
-            <a>Employee email: {{employee.email}} </a>
+            <a>Employee username: {{employee.username}} </a>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="alertEmployees()">Alert employees with email</button>
+        <button type="button" class="btn btn-primary" (click)="alertEmployees()">Alert employees to sign up!</button>
         <button id="closeModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

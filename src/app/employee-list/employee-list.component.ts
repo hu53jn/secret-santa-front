@@ -23,18 +23,18 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeForm = this.formBuilder.group({
-      firstName: [''],
+      firstName: ['', Validators.required],
       lastName: [''],
-      email: ['', [Validators.required, Validators.email]]
+      username: ['', Validators.required]
     });
-    this.singleEmployee = {firstName: '',lastName: '', email: ''};
+    this.singleEmployee = {firstName: '',lastName: '', username: ''};
   }
 
   removeEmployee(index: number){
     var helper;
 
     for(let i = 0; i < this.secretSantaMain.length; i++){
-      if(this.secretSantaMain[i].email == this.employees[index]){
+      if(this.secretSantaMain[i].username == this.employees[index]){
         helper = i;
       }
     }
@@ -48,7 +48,7 @@ export class EmployeeListComponent implements OnInit {
   addEmployee(){
     this.setEmployeeValue();
     this.secretSantaMain.push(this.singleEmployee);
-    this.employees.push(this.employeeForm.get('email').value);
+    this.employees.push(this.employeeForm.get('username').value);
     this.employeeForm.reset();
   }
 
@@ -59,14 +59,16 @@ export class EmployeeListComponent implements OnInit {
     this.secretSantaMain.forEach(element => {
       this.employeeService.addEmploye(element).subscribe((data : any) => {
       },
-      err => alertify.error("Email already exist!" + element.email));
-      this.router.navigateByUrl('/home');
+      err => alertify.error("Username already exist!" + element.username));
     })
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+      this.router.navigateByUrl('/home')
+    }, 3000);
   }
 
   setEmployeeValue(){
-    this.singleEmployee = {firstName: '',lastName: '', email: '', secretSanta: ''}
-    this.singleEmployee.email = this.employeeForm.get('email').value;
+    this.singleEmployee = {firstName: '',lastName: '', username: '', secretSanta: ''}
+    this.singleEmployee.username = this.employeeForm.get('username').value;
     this.singleEmployee.firstName = this.employeeForm.get('firstName').value;
     this.singleEmployee.lastName = this.employeeForm.get('lastName').value;
     this.singleEmployee.secretSanta  = 'Secret Santa not selected!';

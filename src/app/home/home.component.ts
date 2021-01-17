@@ -48,16 +48,22 @@ export class HomeComponent implements OnInit {
   }
 
   removeEmployee(index: number){
-    this.employess.forEach(element => {
-      if(element.secretSanta == this.employess[index].username){
-        element.secretSanta = "Secret Santa not selected!";
-        this.employeeService.updateEmployee(element.id, element).subscribe((data : any) => {
-          this.employeeService.deleteEmployee(this.employess[index].id).subscribe((data : any) => {
-            this.getEmployees();
-          });
-        });
+    // this.employess.forEach(element => {
+    //   if(element.secretSanta === this.employess[index].username){
+    //     element.secretSanta = "Secret Santa not selected!";
+    //     console.log('uslo');
+    //     this.employeeService.updateEmployee(element.id, element).subscribe((data : any) => {});
+    //   }
+    // })
+    for(let i in this.employess){
+      if(this.employess[i].secretSanta === this.employess[index].firstName){
+        this.employess[i].secretSanta = "Secret Santa not selected!";
+        this.employeeService.updateEmployee(this.employess[i].id, this.employess[i]).subscribe((data : any) => {});
       }
-    })
+    }
+    this.employeeService.deleteEmployee(this.employess[index].id).subscribe((data : any) => {
+      this.getEmployees();
+    });
   }
 
   shuffleArray(){
